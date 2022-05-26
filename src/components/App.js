@@ -36,6 +36,14 @@ export default class App extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(`Users`, JSON.stringify(this.state.contacts))
+    }
+  }
+  componentDidMount() {
+    localStorage.setItem(`Users`, JSON.stringify(this.state.contacts))
+  }
   getVisibleContacts = () => {
     const { contacts, filter } = this.state
 
