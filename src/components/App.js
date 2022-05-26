@@ -33,6 +33,7 @@ export default class App extends Component {
       this.setState((prevState) => ({
         contacts: [...prevState.contacts, contact],
       }))
+      console.log(` new persons added`)
     }
   }
 
@@ -44,6 +45,11 @@ export default class App extends Component {
   componentDidMount() {
     localStorage.setItem(`Users`, JSON.stringify(this.state.contacts))
   }
+  // componentWillUnmount(prevState) {
+  //   if (this.state.contacts !== prevState.contacts) {
+  //     return window.localStorage.removeItem(`Users`)
+  //   }
+  // }
   getVisibleContacts = () => {
     const { contacts, filter } = this.state
 
@@ -58,6 +64,7 @@ export default class App extends Component {
         contacts: prevState.contacts.filter(({ id }) => id !== contactId),
       }
     })
+    console.log(` persons removed`)
   }
   // handleChange = ({ target }) => {
   //   const { name, value } = target
