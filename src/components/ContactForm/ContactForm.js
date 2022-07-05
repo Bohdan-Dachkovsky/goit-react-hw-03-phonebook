@@ -33,6 +33,7 @@ export default class ContactForm extends Component {
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
+            autoComplete="off"
           />
         </label>
         <label className={styles.TaskEditor_label}>
@@ -43,6 +44,7 @@ export default class ContactForm extends Component {
             name="number"
             value={this.state.number}
             onChange={this.handleChange}
+            autoComplete="off"
           />
         </label>
         <button className={styles.TaskEditor_button} type="submit">
