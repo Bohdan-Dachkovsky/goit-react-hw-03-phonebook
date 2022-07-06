@@ -36,21 +36,18 @@ export default class App extends Component {
       console.log(` new persons added`)
     }
   }
-  // componentWillUnmount() {
-  //   // localStorage.setItem(`Users`, JSON.stringify(this.state.contacts))
-  // }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      const getUsers = localStorage.getItem('Users')
 
-      this.setState({ contacts: getUsers })
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts')
+    const parsedContacts = JSON.parse(contacts)
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts })
     }
   }
-  componentDidMount() {
-    localStorage.setItem('Users', JSON.stringify(this.state.contacts))
-  }
-  componentWillUnmount() {
-    localStorage.removeItem('Users', JSON.stringify(this.state.contacts))
+  componentDidUpdate(prevProp, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
   }
   getVisibleContacts = () => {
     const { contacts, filter } = this.state
@@ -60,14 +57,21 @@ export default class App extends Component {
     )
   }
 
-  removeContact = (contactId, prevState) => {
-    this.setState((prevState) => {
+  // removeContact = (contactId, prevState) => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+  //     }
+  //   })
+
+  //   console.log(` persons removed`)
+  // }
+  removeContact = (contactId) => {
+    this.setState(({ contacts }) => {
       return {
-        contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+        contacts: contacts.filter((e) => e.id !== contactId),
       }
     })
-
-    console.log(` persons removed`)
   }
   // handleChange = ({ target }) => {
   //   const { name, value } = target
