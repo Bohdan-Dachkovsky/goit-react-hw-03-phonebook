@@ -19,7 +19,6 @@ export default class App extends Component {
     const searchSameName = this.state.contacts
       .map((cont) => cont.name)
       .includes(task.name)
-
     if (searchSameName) {
       alert(`${task.name} is already in contacts`)
     } else if (task.name.length === 0) {
@@ -49,6 +48,7 @@ export default class App extends Component {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
     }
   }
+
   getVisibleContacts = () => {
     const { contacts, filter } = this.state
 
