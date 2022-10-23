@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import ContactList from './ContactList/ContactList'
 import Filter from './Filter/Filter'
 import ContactForm from './ContactForm/ContactForm'
-
+import Text from './AdditText'
 export default class App extends Component {
   state = {
     contacts: [
@@ -107,6 +107,7 @@ export default class App extends Component {
             onRemoveContact={this.removeContact}
           />
         )}
+        <Text />
       </div>
     )
   }
